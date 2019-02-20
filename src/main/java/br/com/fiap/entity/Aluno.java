@@ -16,6 +16,11 @@ public class Aluno {
          super();
     }
 
+    public Aluno(String nome, String matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
+    }
+
     public Aluno(int id, String nome, String matricula) {
         this.id = id;
         this.nome = nome;
