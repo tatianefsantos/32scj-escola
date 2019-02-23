@@ -1,16 +1,24 @@
 package br.com.fiap.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_alunos")
-public class Aluno {
+public class Aluno implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idaluno")
     private int id;
     private String nome;
     private String matricula;
+    @OneToMany(
+            mappedBy = "aluno",
+            cascade = CascadeType.ALL
+    )
+    private Set<CursoAluno> cursoAlunos;
 
     public Aluno (){
          super();
@@ -49,5 +57,13 @@ public class Aluno {
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
+    }
+
+    public Set<CursoAluno> getCursoAlunos() {
+        return cursoAlunos;
+    }
+
+    public void setCursoAlunos(Set<CursoAluno> cursoAlunos) {
+        this.cursoAlunos = cursoAlunos;
     }
 }
